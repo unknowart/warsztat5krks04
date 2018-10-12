@@ -1,9 +1,7 @@
 package pl.coderslab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.beans.MemoryBookService;
 import pl.coderslab.model.Book;
 
@@ -30,6 +28,13 @@ public class BookController {
     @GetMapping("")
     public List<Book> getBookList(){
         return mbs.getList();
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable long id) {
+        this.mbs.deleteByID(id);
+
+        return "{\"status\": \"ok\"}";
     }
 
 

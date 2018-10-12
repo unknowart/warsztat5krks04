@@ -29,4 +29,12 @@ public class MemoryBookService {
         this.list = list;
     }
 
+    public void deleteByID(long id) {
+        for(int i=0; i<this.list.size(); i++){
+            if(this.list.get(i).getId() == id){
+                this.list.remove(i);
+                break;
+            }
+        }
+    }
 }
