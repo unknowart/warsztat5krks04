@@ -20,22 +20,31 @@ public class BookController {
     }
 
     @GetMapping("/helloBook")
-    public Book helloBook(){
-        return new Book(1L,"9788324631766","Thinking in Java",
-                "Bruce Eckel","Helion","programming");
+    public Book helloBook() {
+        return new Book(1L, "9788324631766", "Thinking in Java",
+                "Bruce Eckel", "Helion", "programming");
     }
 
     @GetMapping("")
-    public List<Book> getBookList(){
+    public List<Book> getBookList() {
         return mbs.getList();
     }
 
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable long id) {
         this.mbs.deleteByID(id);
-
         return "{\"status\": \"ok\"}";
     }
 
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable long id) {
+        return this.mbs.getById(id);
+    }
+
+    @PostMapping("")
+    public Book addBook(@RequestBody Book book) {
+        this.mbs.insertBook(book);
+        return book;
+    }
 
 }
